@@ -17,8 +17,6 @@ class Solution
         for (int i = 0; i < N; i++) {
         	coffee[i] = Integer.parseInt(st.nextToken());
         }
-        
-        Arrays.sort(coffee, Collections.reverseOrder());
 
         for (int i = 0; i < N; i++) {
         	if (coffee[i] > K) continue;
