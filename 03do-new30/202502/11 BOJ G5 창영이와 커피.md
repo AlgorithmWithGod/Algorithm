@@ -1,6 +1,4 @@
 ```java
-package BOJ;
-
 import java.io.*;
 import java.util.*;
 
@@ -36,21 +34,16 @@ public class Main {
 
         for (int caffeine = 1; caffeine < K+1; caffeine++) {
             for (int coffee = 1; coffee < N+1; coffee++) {
+                // (default) coffee번째 커피를 마시지 않는다면, caffine을 채우기 위해 coffee-1번째 커피까지 고려했을 때의 최소값이 dp[caffeine][coffee]가 됨
+                dp[caffeine][coffee] = dp[caffeine][coffee-1];
                 // coffee번째 커피를 마시는 경우
                 if (caffeine - cups[coffee] >= 0) {
                     dp[caffeine][coffee] = Integer.min(dp[caffeine][coffee], dp[caffeine-cups[coffee]][coffee-1] + 1);
                 }
-                // coffee번째 커피를 마시지 않는다면, caffine을 채우기 위해 coffee-1번째 커피까지 고려했을 때의 최소값이 dp[caffeine][coffee]가 됨
-                dp[caffeine][coffee] = Integer.min(dp[caffeine][coffee], dp[caffeine][coffee-1]);
             }
         }
 
-        int answer = maxCups;
-        for (int coffee = 1; coffee < N+1; coffee++) {
-            if (dp[K][coffee] < answer) {
-                answer = dp[K][coffee];
-            }
-        }
+        int answer = dp[K][N];
         if (answer == maxCups) {
             answer = -1;
         }
