@@ -28,7 +28,14 @@
     <td align="center"><a href="https://github.com/Seol-JY"><b>설진영</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun" ><b>이강현</b></td>
   </tr>
-
+  <tr>
+    <td align="center"><a href="="https://github.com/AlgorithmWithGod/Algorithm/new/oncsr/oncsr/202502">2월 제출 바로가기</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202502" >2월 제출 바로가기</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/03do-new30/03do-new30/202502">2월 제출 바로가기</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ShinHeeEul/ShinHeeEul/202502">2월 제출 바로가기</td>
+    <td align="center"><a href="https://github.com/Seol-JY">2월 제출 바로가기</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202502">2월 제출 바로가기</td>
+  </tr>
   <!-- <tr>
     <td align = "center" colspan = "5" style="border-right : 0.5px solid gray">Full-Stack</td>
   </tr> -->
@@ -44,6 +51,8 @@
 | :--- | :---------- |
 | Week 1  | https://blobnom.xyz/rooms/552 |
 | Week 2  | https://blobnom.xyz/rooms/580 |
+| Week 3  | https://blobnom.xyz/rooms/611 |
+
 
 <br>
 
