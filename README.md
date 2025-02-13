@@ -29,12 +29,12 @@
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun" ><b>이강현</b></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202502">2월 제출 바로가기</td>
-    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202502" >2월 제출 바로가기</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202502">2월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202502" >2월 제출</td>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/03do-new30/03do-new30/202502">2월 제출 바로가기</td>
-    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ShinHeeEul/ShinHeeEul/202502">2월 제출 바로가기</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202502">2월 제출 바로가기</td>
-    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202502">2월 제출 바로가기</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ShinHeeEul/ShinHeeEul/202502">2월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202502">2월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202502">2월 제출</td>
   </tr>
   <!-- <tr>
     <td align = "center" colspan = "5" style="border-right : 0.5px solid gray">Full-Stack</td>
