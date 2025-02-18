@@ -34,10 +34,6 @@ public class Main {
             for (int i = 0; i < mid; i++) {
                 target.setCharAt(i, newHead.charAt(i));
             }
-            // newHead가 head보다 길어질 수 있음. (ex. 99 -> 101)
-            if (newHead.length() != head.length()) {
-                target = new StringBuilder(head.substring(0, 1)).append(target);
-            }
             // 앞부분을 증가시킨 target으로 다시 팰린드롬을 만든다.
             makePalindrome(target);
         }
