@@ -1,6 +1,7 @@
 ```java
 import java.io.*;
 import java.util.*;
+
 public class Main {
 
     static int N, M, D, maxEnemy;
