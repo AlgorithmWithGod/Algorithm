@@ -1,0 +1,126 @@
+```java
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	
+	
+	static int[][] parents;
+	static int[] depths;
+	static ArrayList<Integer>[] lists;
+	static int N;
+	static int logN;
+	public static void main(String[] args) throws Exception {
+		
+		int N = read();
+		
+		int size = 0;
+		
+		int sum = 0;
+		int nxt = 2;
+		int before = 0;
+		while(sum < N) {
+			before = sum;
+			sum += nxt;
+			nxt <<= 1;
+		}
+		
+		
+		nxt >>= 1;
+		StringBuilder sb = new StringBuilder();
+		while(nxt > 1) {
+			nxt >>= 1;
+
+			System.out.println(before + " " + nxt);
+			if(before + nxt < N) {
+				sb.append('7');
+				N -= nxt;
+			} else {
+				sb.append('4');
+			}
+		}
+		
+		System.out.println(sb);
+	}
+	
+	private static int lca(int a, int b) {
+		
+		int da = depths[a];
+		int db = depths[b];
+		
+
+		System.out.println("aaa" + " " + a + " " + b);
+		
+		if(da < db) {
+			b = calculateDiff(b, db - da);
+		} else {
+			a = calculateDiff(a, da - db);
+		}
+		
+		
+		System.out.println("bbb" + " " + a + " " + b);
+		
+		if(a == b) return a;
+		
+		for(int i = logN; i >= 0; i--) {
+			
+			int ka = parents[a][i];
+			int kb = parents[b][i];
+			
+			if(ka == kb) continue;
+			
+			a = ka;
+			b = kb;
+		}
+		
+		
+		return parents[a][0];
+	}
+	
+	private static int calculateDiff(int a, int diff) {
+		
+		for(int i = 0; (1 << i) <= diff; i++) {
+			
+			int bit = 1 << i;
+			
+			if((diff | bit) != diff) continue;
+			
+			a = parents[a][i];
+			
+		}
+		
+		return a;
+	}
+	
+	private static void dfs(int idx, int depth, int parent) {
+		
+		depths[idx] = depth;
+		
+		for(int i : lists[idx]) {
+			if(parent == i) continue;
+			parents[i][0] = idx;
+			dfs(i, depth + 1, idx);
+		}
+	}
+	
+	
+    private static int read() throws IOException {
+        int d, o = 0;
+        boolean negative = false;
+
+        while ((d = System.in.read()) <= 32); 
+
+        if (d == '-') {
+            negative = true;
+            d = System.in.read();
+        }
+
+        do {
+            o = (o << 3) + (o << 1) + (d & 15); // o = o * 10 + (d - '0')
+        } while ((d = System.in.read()) >= '0' && d <= '9');
+
+        return negative ? -o : o;
+    }
+}
+
+```
