@@ -5,6 +5,7 @@
 - 매일 최소 1개의 알고리즘 문제를 도전하고 인증합니다. (휴일은 제외합니다.)
 - 자정 전까지 PR을 올려 인증합니다. 자정이 넘었다면 다음날 인증으로 간주합니다.
 
+
 <br>
 
 ## 👥 스터디 멤버
@@ -28,6 +29,14 @@
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun" ><b>이강현</b></td>
   </tr>
 
+  <tr>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202503">3월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202503" >3월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/03do-new30/03do-new30/202503">3월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ShinHeeEul/ShinHeeEul/202503">3월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202503">3월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202503">3월 제출</td>
+  </tr>
   <!-- <tr>
     <td align = "center" colspan = "5" style="border-right : 0.5px solid gray">Full-Stack</td>
   </tr> -->
@@ -39,7 +48,16 @@
 
 주간 스터디 계획입니다. 매주 새로운 [Blobnom](https://blobnom.xyz/)을 기반으로 기본 알고리즘들을 연습합니다.
 
+| 주차 | 링크 |
+| :--- | :---------- |
+| Week 1  | https://blobnom.xyz/rooms/552 |
+| Week 2  | https://blobnom.xyz/rooms/580 |
+| Week 3  | https://blobnom.xyz/rooms/611 |
+| Week 4  | https://blobnom.xyz/rooms/649 |
+
+
 <br>
+
 
 ## 💚 참여 방법
 
@@ -65,10 +83,10 @@
   Algorithm
       ├── HeeEul
       |   └── 202312
-      |       ├── 01 BAJ 미로 탐색
-      |       └── 02 BAJ 회의실 배정 2
+      |       ├── 01 BOJ 미로 탐색
+      |       └── 02 BOJ 회의실 배정 2
       |   └── 202401
-      |       ├── 01 BAJ 자두나무
+      |       ├── 01 BOJ 자두나무
       |       └── ...
       |   └── 202402
       |       ├── 01 PGM 프린터 큐
@@ -88,7 +106,7 @@
 
 - Commit 규칙과 PR 규칙이 동일합니다.
 - PR comment을 적는 건 선택입니다. 하지만 가능하다면 문제 풀이에 대한 회고를 작성해봅시다.
-- 💡 작성 예시: `[20231218] BAJ / 골드5 / 자두나무 / 이강현`
+- 💡 작성 예시: `[20231218] BOJ / 골드5 / 자두나무 / 이강현`
 - 💡 작성 예시: `[20240116] PGM / lv2 / 쿼드압축 후 개수 세기 / 권혁준`
 
 <br>

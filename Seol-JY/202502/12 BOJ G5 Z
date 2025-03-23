@@ -1,0 +1,52 @@
+```java
+import java.io.*;
+import java.util.*;
+public class Main {
+    static int R, C;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = nextInt(st);
+        R = nextInt(st);
+        C = nextInt(st);
+
+        recur(N, 0L);
+    }
+
+    private static void recur(int n, long startValue) {
+        int quad = determine(n);
+        long newStartValue = startValue + quad * (1L << (2*(n-1)));
+
+        if (n == 1){
+            System.out.println(newStartValue);
+            return;
+        }
+
+        recur(n-1, newStartValue);
+    }
+    
+    private static int determine(int n) {
+        int stand = 1 << (n-1);
+
+        if (R < stand && C < stand) {
+            return 0;
+        }
+        if (R < stand && C >= stand) {
+            C -= stand;
+            return 1;
+        }
+        if (R >= stand && C < stand) {
+            R -= stand;
+            return 2;
+        }
+        C -= stand;
+        R -= stand;
+
+        return 3;
+    }
+
+    private static int nextInt(StringTokenizer st) {
+        return Integer.parseInt(st.nextToken());
+    }
+}
+```
