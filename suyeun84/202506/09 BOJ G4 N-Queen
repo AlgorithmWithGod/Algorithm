@@ -1,0 +1,44 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class boj9663 {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer st;
+    static void nextLine() throws Exception {st = new StringTokenizer(br.readLine());}
+    static int nextInt() {return Integer.parseInt(st.nextToken());}
+	
+    static int N;
+    static int[] position;
+    static int answer = 0;
+
+    public static void main(String[] args) throws Exception {
+    	nextLine();
+        N = nextInt();
+        position = new int[N];
+        backtracking(0);
+        System.out.println(answer);
+    }
+
+    public static void backtracking(int cnt) {
+        if (cnt == N) {
+            answer++;
+            return;
+        }
+
+        for (int i = 0; i < N; i++) {
+            position[cnt] = i;
+            boolean flag = true;
+            for (int j = 0; j < cnt; j++) {
+                if (position[cnt] == position[j] || Math.abs(position[cnt] - position[j]) == Math.abs(cnt - j)) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                backtracking(cnt + 1);
+            }
+        }
+    }
+}
+```
