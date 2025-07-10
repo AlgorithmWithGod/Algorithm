@@ -28,7 +28,7 @@
     <td align="center"><a href="https://github.com/oncsr"><b>권혁준</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/suyeun84" ><b>김수연</b></td>
     <td align="center"><a href="https://github.com/03do-new30"><b>신동윤</b></td>
-    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/ShinHeeEul" ><b>신희을</b></td>
+    <td align="center"style="border-right : 0.5px solid gray"><b>신희을</b></td>
     <td align="center"><a href="https://github.com/Seol-JY"><b>설진영</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun" ><b>이강현</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder" ><b>이인희</b></td>
@@ -41,7 +41,9 @@
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202507">7월 제출</td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202507" >7월 제출</td>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/03do-new30/03do-new30/202507">7월 제출</td>
-    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ShinHeeEul/ShinHeeEul/202507">7월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray; font-weight: bold">
+        <b>🎉졸업</b>
+    </td>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202507">7월 제출</td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202507">7월 제출</td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202507">7월 제출</td>
