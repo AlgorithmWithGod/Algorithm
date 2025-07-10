@@ -1,0 +1,49 @@
+'''java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine());
+
+        int[] buildings = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            buildings[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            double temp = 1000000001;
+            int count = 0;
+            for (int j = i - 1; j >= 0; j--) {
+                double degree = (double) (buildings[i] - buildings[j]) / (i - j);
+                if (temp > degree) {
+                    count++;
+                    temp = degree;
+                } else {
+                    continue;
+                }
+            }
+            temp = -1000000001;
+            for (int j = i + 1; j < n; j++) {
+                double degree = (double) (buildings[j] - buildings[i]) / (j - i);
+                if (temp < degree) {
+                    count++;
+                    temp = degree;
+                } else {
+                    continue;
+                }
+            }
+            max = Math.max(max, count);
+        }
+
+        System.out.println(max);
+    }
+}
+'''
