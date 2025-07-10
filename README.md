@@ -22,7 +22,7 @@
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun"><img src="https://avatars.githubusercontent.com/lkhyun" width="130px;" alt=""></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun"><img src="https://avatars.githubusercontent.com/LiiNi-coder" width="130px;" alt=""></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun"><img src="https://avatars.githubusercontent.com/0224LJH" width="130px;" alt=""></td>
-
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><img src="https://avatars.githubusercontent.com/JHLEE325" width="130px;" alt=""></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/oncsr"><b>권혁준</b></td>
@@ -33,6 +33,7 @@
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/lkhyun" ><b>이강현</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder" ><b>이인희</b></td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/0224LJH" ><b>이종환</b></td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325" ><b>이준희</b></td>
 
   </tr>
 
@@ -45,6 +46,7 @@
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202507">7월 제출</td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202507">7월 제출</td>
     <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202507">7월 제출</td>
+    <td align="center"style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202507">7월 제출</td>
     </tr>
   <!-- <tr>
     <td align = "center" colspan = "5" style="border-right : 0.5px solid gray">Full-Stack</td>
