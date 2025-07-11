@@ -2,6 +2,7 @@
 import java.io.*;
 import java.util.*;
 
+
 public class Main {
     static int N, M, X;
     static int[][] arr, revArr;
