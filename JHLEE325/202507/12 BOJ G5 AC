@@ -1,0 +1,63 @@
+'''java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int T = Integer.parseInt(st.nextToken());
+
+        for (int t = 0; t < T; t++) {
+            Deque<Integer> list = new ArrayDeque<>();
+            String order = br.readLine();
+            String s = br.readLine();
+            String num = br.readLine();
+            num = num.substring(1, num.length() - 1);
+
+            if (!num.isEmpty()) {
+                StringTokenizer st2 = new StringTokenizer(num, ",");
+                while (st2.hasMoreTokens()) {
+                    list.add(Integer.parseInt(st2.nextToken()));
+                }
+            }
+            boolean front = true;
+            boolean isfinished = false;
+            for (int o = 0; o < order.length(); o++) {
+                char c = order.charAt(o);
+                if (c == 'R')
+                    front = !front;
+                else {
+                    if (list.isEmpty()) {
+                        sb.append("error");
+                        isfinished = true;
+                        break;
+                    }
+                    if (front)
+                        list.pollFirst();
+                    else
+                        list.pollLast();
+                }
+            }
+            if (!isfinished) {
+                sb.append("[");
+                while (!list.isEmpty()) {
+                    if (front)
+                        sb.append(list.poll());
+                    else sb.append(list.pollLast());
+                    if (!list.isEmpty())
+                        sb.append(",");
+                }
+                sb.append("]");
+            }
+            sb.append("\n");
+        }
+
+        System.out.println(sb.toString());
+    }
+}
+'''
