@@ -1,0 +1,41 @@
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
+
+        int n = Integer.parseInt(br.readLine());
+        int[] tower = new int[n];
+        int[] answer = new int[n];
+        Deque<int[]> list = new ArrayDeque<>();
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            tower[i] = Integer.parseInt(st.nextToken());
+        }
+
+        for (int i = 0; i < n; i++) {
+            int h = tower[i];
+
+            while (!list.isEmpty() && list.peek()[1] < h) {
+                list.pop();
+            }
+
+            answer[i] = list.isEmpty() ? 0 : list.peek()[0];
+
+            list.push(new int[]{i + 1, h});
+        }
+
+        for (int i = 0; i < n; i++) {
+            sb.append(answer[i] + " ");
+        }
+
+        System.out.println(sb.toString());
+    }
+}```
