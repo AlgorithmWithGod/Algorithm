@@ -4,127 +4,79 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.List;
 
 public class Main {
-    static int[][] arr;
-    static boolean[][] visited;
-    static int[] dy = {-1,0,1,0};
-    static int[] dx = {0,1,0,-1};
-    static int size;
-    static final int LAND = 1;
-    static final int WATER = 0;
 
+    static StringBuilder sb = new StringBuilder();
+    static int target;
+    static boolean[] num;
+
+    // 골드바흐의 강한 추측: 2보다 큰 짝수는 항상 두 소수의 합으로 표현할 수 있다.
+    // 골드바흐의 약한 추측: 5보다 큰 홀수는 항상 세 소수의 합으로 표현할 수 있다.
+    // 8 이상의 짝수는 항상 네 소수의 합으로 표현 가능하다-> 두 소수 + 2 + 2
+    // 9 이상의 홀수는 항상 네 소수의 합으로 표현 가능하다.-> 세 소수 + 2
+    // 즉 8이상은 항상 표현이 가능하다.
     public static void main(String[] args) throws IOException {
         init();
-        int result = process();
-        System.out.println(result);
+        process();
+        print();
     }
 
     private static void init() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        size = Integer.parseInt(br.readLine());
-        arr = new int[size][size];
+        target = Integer.parseInt(br.readLine());
+        num = new boolean[target + 1];
+        Arrays.fill(num, true);
+        num[0] = false;
+        num[1] = false;
+    }
 
-        for (int i = 0; i < size; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < size; j++){
-                arr[i][j] = Integer.parseInt(st.nextToken());
+    private static void process() {
+        if (target < 8) {
+            sb.append(-1);
+            return;
+        }
+
+        getPrimes();
+        int curNum = target;
+        if ( target % 2 == 0){
+            sb.append("2 2 ");
+            curNum -= 4;
+        } else {
+            sb.append("2 3 ");
+            curNum -= 5;
+        }
+
+        for (int i = 2; i <= curNum/2; i++) {
+            if (num[i] && num[ curNum - i]) {
+                sb.append(i).append(" ").append(curNum-i);
+                return;
             }
         }
     }
 
-    private static int process() {
-        // 모든 섬들을 서로 다른 번호로 표시
-        visited = new boolean[size][size];
-        int islandNum = 2;
-
-        for (int i = 0; i < size; i++){
-            for (int j = 0; j < size; j++){
-                if (arr[i][j] == LAND && !visited[i][j]){
-                    markIsland(i, j, islandNum);
-                    islandNum++;
+    private static void getPrimes() {
+        for (int i = 2; i * i <= target; i++) {
+            if (num[i]) {
+                int temp = i*2;
+                while ( temp <= target ) {
+                    num[temp] = false;
+                    temp += i;
                 }
             }
-        }
 
-        // 각 섬에서 다른 섬으로 가는 최단 거리 찾기
-        int minDistance = Integer.MAX_VALUE;
-
-        for (int currentIsland = 2; currentIsland < islandNum; currentIsland++) {
-            int distance = bfsFromIsland(currentIsland);
-            minDistance = Math.min(minDistance, distance);
-        }
-
-        return minDistance;
-    }
-
-    private static void markIsland(int y, int x, int islandNum) {
-        Queue<Point> q = new LinkedList<>();
-        arr[y][x] = islandNum;
-        q.add(new Point(x, y));
-        visited[y][x] = true;
-
-        while (!q.isEmpty()){
-            Point p = q.poll();
-            for (int i = 0; i < 4; i++) {
-                int nx = p.x + dx[i];
-                int ny = p.y + dy[i];
-                if (ny < 0 || ny >= size || nx < 0 || nx >= size) continue;
-                if (visited[ny][nx] || arr[ny][nx] != LAND) continue;
-
-                visited[ny][nx] = true;
-                arr[ny][nx] = islandNum;
-                q.add(new Point(nx, ny));
-            }
         }
     }
 
-    private static int bfsFromIsland(int startIsland) {
-        Queue<Point> queue = new LinkedList<>();
-        boolean[][] bfsVisited = new boolean[size][size];
 
-        // 시작 섬의 모든 셀을 큐에 추가
-        for (int i = 0; i < size; i++){
-            for (int j = 0; j < size; j++){
-                if (arr[i][j] == startIsland){
-                    queue.add(new Point(j, i));
-                    bfsVisited[i][j] = true;
-                }
-            }
-        }
-
-        int distance = 0;
-
-        while (!queue.isEmpty()) {
-            int qSize = queue.size();
-
-            for (int i = 0; i < qSize; i++) {
-                Point p = queue.poll();
-
-                for (int k = 0; k < 4; k++) {
-                    int nx = p.x + dx[k];
-                    int ny = p.y + dy[k];
-
-                    if (nx < 0 || ny < 0 || nx >= size || ny >= size) continue;
-                    if (bfsVisited[ny][nx]) continue;
-
-                    // 다른 섬을 찾았다면 거리 반환
-                    if (arr[ny][nx] >= 2 && arr[ny][nx] != startIsland) {
-                        return distance;
-                    }
-
-                    // 물이면 다음 레벨로 확장
-                    if (arr[ny][nx] == WATER) {
-                        bfsVisited[ny][nx] = true;
-                        queue.add(new Point(nx, ny));
-                    }
-                }
-            }
-            distance++;
-        }
-
-        return Integer.MAX_VALUE;
+    private static void print()  {
+        System.out.println(sb.toString());
     }
+
+
+
 }
+
 
 ```
