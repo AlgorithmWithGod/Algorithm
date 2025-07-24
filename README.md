@@ -23,14 +23,16 @@
   <tr>
     <td align="center"><a href="https://github.com/oncsr"><b>권혁준</b></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/suyeun84"><b>김수연</b></a></td>
-    <td align="center"><a href="https://github.com/03do-new30"><b>신동윤</b></a></td>
+    <td align="center" style="border-right : 0.5px solid gray"><b>신동윤</b></td>
     <td align="center" style="border-right : 0.5px solid gray"><b>신희을</b></td>
     <td align="center"><a href="https://github.com/Seol-JY"><b>설진영</b></a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202507">7월 제출</td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202507">7월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/03do-new30/03do-new30/202507">7월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray; font-weight: bold">
+        <b>🎉졸업</b>
+    </td>
     <td align="center" style="border-right : 0.5px solid gray; font-weight: bold">
         <b>🎉졸업</b>
     </td>
