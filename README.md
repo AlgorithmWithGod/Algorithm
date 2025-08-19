@@ -24,14 +24,14 @@
     <td align="center"><a href="https://github.com/oncsr"><b>권혁준</b></a></td>
    <td align="center"><a href="https://github.com/0224LJH"><b>이종환</b></a></td>
    <td align="center"><a href="https://github.com/Ukj0ng"><b>한종욱</b></a></td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/suyeun84"><b>김수연</b></a></td>
+    <td align="center"><a href="https://github.com/suyeun84"><b>김수연</b></a></td>
    <td align="center"><a href="https://github.com/lkhyun"><b>이강현</b></a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202508">8월 제출</td>
      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202508">8월 제출</td>
       <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202508">8월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202508">8월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202508">8월 제출</td>
     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202508">8월 제출</td>
     </tr>
 </table>
