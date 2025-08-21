@@ -40,16 +40,19 @@
 
 <table style="border: 0.5 solid gray">
  <tr>
+  <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/zinnnn37"><img src="https://avatars.githubusercontent.com/zinnnn37" width="130px;" alt=""></a><br><a href="https://solved.ac/zinnnn0750"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=dlsgudrpdla" alt="Solved.ac 프로필"></a></td>
+  <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><img src="https://avatars.githubusercontent.com/JHLEE325" width="130px;" alt=""></a><br><a href="https://solved.ac/ljntiger325"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=ljntiger325" alt="Solved.ac 프로필"></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><img src="https://avatars.githubusercontent.com/LiiNi-coder" width="130px;" alt=""></a><br><a href="https://solved.ac/dlsgudrpdla"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=dlsgudrpdla" alt="Solved.ac 프로필"></a></td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><img src="https://avatars.githubusercontent.com/JHLEE325" width="130px;" alt=""></a><br><a href="https://solved.ac/ljntiger325"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=ljntiger325" alt="Solved.ac 프로필"></a></td>
   </tr>
   <tr>
+   <td align="center"><a href="https://github.com/zinnnn37"><b>김민진</b></a></td>
+   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><b>이준희</b></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><b>이인희</b></a></td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><b>이준희</b></a></td>
   </tr>
   <tr>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202508">8월 제출</td>
+   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202508">8월 제출</td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202508">8월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202508">8월 제출</td>
   </tr>
 </table>
 <br>
