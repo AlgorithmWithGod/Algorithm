@@ -40,7 +40,7 @@
 
 <table style="border: 0.5 solid gray">
  <tr>
-  <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/zinnnn37"><img src="https://avatars.githubusercontent.com/zinnnn37" width="130px;" alt=""></a><br><a href="https://solved.ac/zinnnn0750"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=zinnnn37" alt="Solved.ac 프로필"></a></td>
+  <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/zinnnn37"><img src="https://avatars.githubusercontent.com/zinnnn37" width="130px;" alt=""></a><br><a href="https://solved.ac/zinnnn0750"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=zinnnn0750" alt="Solved.ac 프로필"></a></td>
   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><img src="https://avatars.githubusercontent.com/JHLEE325" width="130px;" alt=""></a><br><a href="https://solved.ac/ljntiger325"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=ljntiger325" alt="Solved.ac 프로필"></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><img src="https://avatars.githubusercontent.com/LiiNi-coder" width="130px;" alt=""></a><br><a href="https://solved.ac/dlsgudrpdla"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=dlsgudrpdla" alt="Solved.ac 프로필"></a></td>
   </tr>
