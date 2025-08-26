@@ -35,14 +35,17 @@ public class BJ_1285_동전_뒤집기 {
     }
 
     private static void sol() throws IOException {
-        // 행 뒤집기
+        // 뒤집는 경우의 수(열)
         for (int rowFillped = 0; rowFillped < (1 << N); rowFillped++) {
             // 뒷면
             int totalTails = 0;
 
             for (int row = 0; row < N; row++) {
                 // 0일 때 뒤집지 않고(0), 1일 때 뒤집을 때(1) 0이 되어야 해서 XOR 연산
+                // 여기서 열 뒤집기
                 int tailsInCol = Integer.bitCount(coins[row] ^ rowFillped);
+                
+                // 행은 직접적으로 뒤집지 않고 뒷면의 개수를 비교해서 확인
                 totalTails += Math.min(tailsInCol, N - tailsInCol);
             }
             ans = Math.min(ans, totalTails);
