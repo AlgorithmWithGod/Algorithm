@@ -1,0 +1,54 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    static int cnt,ans;
+    static int[] cost;
+    static int[] money;
+    static int[] dp;
+
+    public static void main(String[] args) throws Exception {
+        init();
+        process();
+        print();
+
+    }
+
+    public static void init() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        cnt = Integer.parseInt(br.readLine());
+        cost = new int[cnt+1];
+        money = new int[cnt+1];
+        dp = new int[cnt+51];
+        ans = 0;
+        for (int i = 1; i <= cnt; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            cost[i] = Integer.parseInt(st.nextToken());
+            money[i] = Integer.parseInt(st.nextToken());
+        }
+    }
+
+    public static void process(){
+        for (int i = 1; i <= cnt; i++) {
+            dp[i] =  Math.max(dp[i],dp[i-1]);
+            if (i + cost[i]-1 > cnt) {
+                continue;
+            }
+
+            dp[i + cost[i]-1] = Math.max (dp[i+cost[i]-1] , dp[i-1] + money[i]);
+        }
+
+        for (int i = 1; i<= cnt; i++) {
+            System.out.println(dp[i]);
+            ans = Math.max(ans, dp[i]);
+        }
+    }
+
+    public static void print(){
+        System.out.println(ans);
+    }
+
+```
+}
