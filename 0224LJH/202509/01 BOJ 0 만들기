@@ -1,0 +1,119 @@
+```java
+import java.io.IOException;
+import java.math.BigInteger;
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+	
+	static int cnt,target,ans;
+	static int[] arr;
+	static List<Integer> list;
+	static String[] decide;
+	static StringBuilder sb = new StringBuilder();
+	
+
+	public static void main(String[] args) throws IOException {
+		init();
+		process();
+		print();
+		
+	}
+	
+	public static void init() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		cnt = Integer.parseInt(br.readLine());
+		arr = new int[cnt];
+		
+		
+		for (int i = 0; i < cnt; i++) {
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+	}
+	
+	public static void process() throws IOException {
+		for (int tc = 0; tc < cnt; tc++) {
+			ans = 0;
+			target = arr[tc];
+			decide = new String[target];
+			list = new ArrayList<>();
+			list.add(1);
+			
+			dfs(1);
+			
+			if (ans != 0) sb.append("\n");
+		}
+	}
+	
+	public static void dfs(int num) {
+		if (num == target) {
+			
+			calculate();
+			
+			return;
+		}
+		
+		
+		int nNum = num+1;
+		int temp = list.get(list.size()-1);
+		
+		
+		list.remove(list.size()-1);
+		decide[num-1] = " ";
+		
+		if (temp < 0) {
+			list.add(temp*10 - num - 1);
+		} else {
+			list.add(temp*10 + num + 1);
+		}
+		
+		dfs(num+1);
+		list.remove(list.size()-1);
+		list.add(temp);
+		
+		
+		
+		list.add(num+1);
+		decide[num-1] = "+";
+		dfs(num+1);
+		list.remove(list.size()-1);
+		
+		list.add((num+1)*(-1));
+		decide[num-1] = "-";
+		dfs(num+1);
+		list.remove(list.size()-1);
+		
+		
+		
+
+		
+		
+		
+	}
+	
+	public static void calculate() {
+		int res = 0;
+		
+		for (int n: list) {
+			res += n;
+		}
+		
+		if (res == 0) {
+			ans++;
+			sb.append(1);
+			for (int i = 1; i < target; i++) {
+				sb.append(decide[i-1]).append(i+1);
+			}
+			sb.append("\n");
+		}
+	}
+
+	
+
+	public static void print() {
+		System.out.println(sb.toString());
+	}
+}
+
+```
