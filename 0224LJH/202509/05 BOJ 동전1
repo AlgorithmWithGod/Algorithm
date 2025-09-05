@@ -1,0 +1,57 @@
+```java
+import java.io.IOException;
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+	static int[] dp,coins;
+	static int coinCnt, goal;
+
+	public static void main(String[] args) throws IOException {
+		init();
+		process();
+		print();
+	}
+	
+	public static void init() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		coinCnt = Integer.parseInt(st.nextToken());
+		goal = Integer.parseInt(st.nextToken());
+		
+		coins = new int[coinCnt];
+		dp = new int[goal+1];
+		dp[0] = 1;
+		
+		for (int i = 0; i < coinCnt; i++) {
+			coins[i] = Integer.parseInt(br.readLine());
+		}
+
+		
+	}
+
+	public static void process() throws IOException {
+		
+		for (int i = 0; i < coinCnt; i++) {
+			int cost = coins[i];
+			
+			for (int j = cost; j <= goal; j++) {
+				dp[j] += dp[j-cost];
+			}
+		}
+
+	}
+
+	
+
+
+	
+
+
+	public static void print() {
+		System.out.println(dp[goal]);
+	}
+}
+
+```
