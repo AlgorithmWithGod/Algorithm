@@ -1,0 +1,102 @@
+```
+import java.io.IOException;
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+	
+	static int[] max = {0,9,98,987,9876,98765,987654,9876543,98765432,987654321};
+	static int[] min = {0,1,12,123,1234,12345,123456,1234567,12345678,123456789};
+	static int ans,target;
+	static int[] num;
+	
+	
+	static boolean[] used = new boolean[10];
+
+	public static void main(String[] args) throws IOException {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    while(sc.hasNext()) {
+	        target = sc.nextInt();
+	        ans = -1;
+	        process();
+	        print();
+	    }
+	    sc.close();
+	}
+	
+	public static void init() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		ans = -1;
+		target = Integer.parseInt(br.readLine());
+		
+	}
+
+	public static void process() throws IOException {
+		if (target >= max[9]) {
+			ans = 0;
+			return;
+		}
+		
+		
+		int size = 0;
+		
+		for (int i = 8;  i >= 0; i--) {
+			if (target / Math.pow(10, i) >= 1) {
+				size = i+1;
+				break;
+			}
+		}
+		
+		if (target >= max[size]) {
+			ans = min[size+1];
+			return;
+		}
+		
+		num = new int[size];
+		
+		
+		recur( 0, size);
+
+	}
+	
+	private static void recur(int cur, int goal) {
+		if (ans != -1) return;
+		
+		if (cur == goal) {
+			int res = 0;
+			for (int i = 0; i < goal; i++) {
+				res*=10;
+				res+=num[i];
+			}
+			ans = res;
+			return;
+		}
+		
+		int original = (target / (int)Math.pow(10, goal - cur - 1)) % 10;
+		int nNum = -1;
+		
+		for (int i = 1; i <= 9; i++) {
+			if (!used[i] && i >= original) {
+				used[i] = true;
+				num[cur] = i;
+				recur(cur+1, goal);
+				used[i] = false;
+			}
+		}
+		
+		
+	}
+
+	
+
+
+	
+
+
+	public static void print() {
+		System.out.println(ans);
+	}
+```
+}
