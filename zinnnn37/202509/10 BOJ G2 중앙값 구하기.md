@@ -26,6 +26,7 @@ public class BJ_2696_중앙값_구하기 {
 
 		while (T-- > 0) {
 			M = Integer.parseInt(br.readLine());
+			bw.write((M / 2 + 1) + "\n");
 
 			s    = "";
 			minq = new PriorityQueue<>();
@@ -47,11 +48,10 @@ public class BJ_2696_중앙값_구하기 {
 				}
 
 				if (i % 2 == 0) {
-					s += maxq.peek() + (i > 2 && (i + 2) % 20 == 0 ? "\n" : " ");
+					bw.write(maxq.peek() + (i > 2 && (i + 2) % 20 == 0 ? "\n" : " "));
 				}
 			}
-			bw.write(maxq.size() + "\n");
-			bw.write(s + "\n");
+			bw.write("\n");
 		}
 		bw.flush();
 		bw.close();
