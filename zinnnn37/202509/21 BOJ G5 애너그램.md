@@ -31,7 +31,6 @@ public class BJ_6443_애너그램 {
 		for (int i = 0; i < length; i++) {
 			alphabets[input.charAt(i) - 'a']++;
 		}
-
 		perm(0);
 	}
 
