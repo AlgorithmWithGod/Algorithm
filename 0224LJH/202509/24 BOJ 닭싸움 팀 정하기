@@ -1,0 +1,103 @@
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+class Main {
+   static BufferedReader br= new BufferedReader(new InputStreamReader(System.in));;
+   static int nodeCnt,relaCnt;
+   static int[] parent,enemy;
+   static HashSet<Integer> ans = new HashSet<>();
+   
+   static final String FRIEND = "F";
+   static final String ENEMY = "E";
+
+   static class Node{
+      int rival = -1;
+      
+   }
+   
+    
+    public static void main(String[] args) throws NumberFormatException, IOException {
+       init();
+       process();
+       print();
+
+    }
+
+    
+    public static void init() throws NumberFormatException, IOException {
+       nodeCnt = Integer.parseInt(br.readLine());
+       relaCnt = Integer.parseInt(br.readLine());
+       enemy = new int[nodeCnt+1];
+       parent = new int[nodeCnt+1];
+       
+       for (int i = 1 ; i <= nodeCnt; i++) {
+          parent[i] = i;
+       }
+    }
+    
+    public static void process() throws IOException {    
+       for (int i = 0; i < relaCnt; i++) {
+          StringTokenizer st = new StringTokenizer(br.readLine());
+          String rela = st.nextToken();
+          int node1 = Integer.parseInt(st.nextToken());
+          int node2 = Integer.parseInt(st.nextToken());
+          
+          if (rela.equals(FRIEND)) {
+        	  
+        	  union(node1,node2);
+          } else {
+        	  if (enemy[node1] != 0) {
+        		  union(node2, enemy[node1]);
+        		  enemy[node1] = Math.min(enemy[node1], node2);
+        	  }
+        	  else enemy[node1] = node2;
+        	  
+        	  if (enemy[node2] != 0) {
+        		  
+        		  union(node1, enemy[node2]);
+        		  enemy[node2] = Math.min(enemy[node2], node1);
+
+        	  }
+        	  else enemy[node2] = node1;
+          }
+          
+       }
+       
+       for (int i = 1; i <= nodeCnt; i++) {
+    	   ans.add(find(i));
+       }
+       
+    }
+    
+    public static void union(int node1, int node2) {
+
+    	int parent1 = find(node1);
+    	int parent2 = find(node2);
+    	if (parent1 <= parent2) {
+    		parent[node2] = parent1;
+    	} else {
+    		parent[node1] = parent2;
+    	}
+    }
+    
+    public static int find(int node) {
+    	if (parent[node] == node) {
+    		return node;
+    	}
+    	
+    	return parent[node] = find(parent[node]);
+    }
+    
+    
+
+
+
+
+   public static void print() {
+      System.out.println(ans.size());
+    }
+}
+```
