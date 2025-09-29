@@ -1,0 +1,80 @@
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+class Main {
+	
+	static PriorityQueue<Meeting> mPq = new PriorityQueue<>();
+	static int size,ans;
+	
+	static class Meeting implements Comparable<Meeting>{
+		int start;
+		int end;
+		
+		
+		public Meeting (int start, int end) {
+			this.start = start;
+			this.end = end;
+		}
+		
+		@Override
+		public int compareTo(Meeting m) {
+			return Integer.compare(this.start, m.start);
+		}
+	}
+	
+
+	
+    public static void main(String[] args) throws NumberFormatException, IOException {
+       init();
+       process();
+       print();
+
+    }
+
+    
+    public static void init() throws NumberFormatException, IOException {
+    	BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+    	size = Integer.parseInt(br.readLine());
+    	
+    	for (int i = 0; i < size; i++) {
+    		StringTokenizer st = new StringTokenizer(br.readLine());
+    		int start = Integer.parseInt(st.nextToken());
+    		int end = Integer.parseInt(st.nextToken());
+    		
+    		Meeting m = new Meeting(start, end);
+    		mPq.add(m);
+    	}
+    	
+
+    }
+    
+    public static void process() throws IOException {   
+    	PriorityQueue<Integer> pq = new PriorityQueue<>();
+    	// pq에 각 회의실 사용이 끝나는 시간을 넣음 -> 가장 작은애가 지금 회의의 시작시간보다 크면 새롭게 추가. 끝.
+    	pq.add(mPq.poll().end);
+    	
+    	while (!mPq.isEmpty()) {
+    		Meeting m = mPq.poll();
+    		
+    		if ( pq.peek() <= m.start) {
+    			pq.poll();
+    		}
+    		pq.add(m.end);
+    			
+    		
+    	}
+    	ans = pq.size();
+    	
+
+
+    }
+    
+
+   public static void print() {
+      System.out.println(ans);
+    }
+}
+```
