@@ -28,11 +28,11 @@
    <td align="center"><a href="https://github.com/lkhyun"><b>이강현</b></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202509">9월 제출</td>
-     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202509">9월 제출</td>
-      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202509">9월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202509">9월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202509">9월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202510">10월 제출</td>
+     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202510">10월 제출</td>
+      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202510">10월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202510">10월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202510">10월 제출</td>
     </tr>
 </table>
 
@@ -50,9 +50,9 @@
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><b>이인희</b></a></td>
   </tr>
   <tr>
-   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202509">9월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202509">9월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202509">9월 제출</td>
+   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202510">10월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202510">10월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202510">10월 제출</td>
   </tr>
 </table>
 <br>
