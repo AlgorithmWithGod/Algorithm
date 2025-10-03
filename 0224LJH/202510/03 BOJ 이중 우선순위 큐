@@ -1,0 +1,121 @@
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+	
+	static final String DELETE = "D";
+	static final int MIN= -1;
+	static final int MAX = 1;
+	
+	static BufferedReader br= new BufferedReader(new InputStreamReader(System.in));;
+	static StringBuilder sb = new StringBuilder();
+	static int orderCnt,curIdx;
+	
+	static PriorityQueue<Node> minPq = new PriorityQueue<>();
+	static PriorityQueue<Node> maxPq = new PriorityQueue<>(Collections.reverseOrder());
+	
+	static class Node implements Comparable<Node>{
+		int idx;
+		int num;
+		boolean isAlive = true;
+		
+		public Node(int num) {
+			this.num = num;
+			this.idx = curIdx++;
+		}
+		
+		public int compareTo(Node n) {
+			if ( this.num == n.num) {
+				return Integer.compare(this.idx, n.idx);
+			}
+			return Integer.compare(this.num, n.num);
+		}
+		
+	}
+
+	
+
+    
+    public static void main(String[] args) throws NumberFormatException, IOException {
+    	int TC = Integer.parseInt(br.readLine());
+    	for (int tc  = 1 ; tc <= TC; tc++) {
+    		init();
+    		process();
+
+    	}
+		print();
+    }
+    
+
+    
+    public static void init() throws NumberFormatException, IOException {
+    	orderCnt = Integer.parseInt(br.readLine());
+    	minPq.clear();
+    	maxPq.clear();
+    	curIdx=0;
+	}
+    
+    public static void process() throws IOException { 	
+    	for (int i = 0; i < orderCnt; i++) {
+    		StringTokenizer st = new StringTokenizer(br.readLine());
+    		String order = st.nextToken();
+    		int num = Integer.parseInt(st.nextToken());
+    		if (order.equals(DELETE)) {
+    			// 삭제
+    			if (num == MIN) {
+    				while(!minPq.isEmpty()) {
+    					Node n = minPq.poll();
+    					if (n.isAlive) {
+    						n.isAlive = false;
+    						break;
+    					}
+    				}
+    				
+    			} else if (num == MAX) {
+    				while(!maxPq.isEmpty()) {
+    					Node n = maxPq.poll();
+    					if (n.isAlive) {
+    						n.isAlive = false;
+    						break;
+    					}
+    				}
+    			}
+    			
+    			
+    		} else {
+    			//삽입
+    			Node n = new Node(num);
+    			minPq.add(n);
+    			maxPq.add(n);
+    		}
+    	}
+    	
+    	
+    	while(!minPq.isEmpty() && !minPq.peek().isAlive) {
+    		minPq.poll();
+    	}
+    	
+    	while(!maxPq.isEmpty() && !maxPq.peek().isAlive) {
+    		maxPq.poll();
+    	}   	
+    	
+    	if (maxPq.isEmpty()) {
+    		sb.append("EMPTY").append("\n");
+    	} else {
+    		sb.append(maxPq.poll().num).append(" ").append(minPq.poll().num).append("\n");
+    	}
+
+    }
+    
+
+
+
+	public static void print() {
+		System.out.print(sb);
+
+    }
+}
+```
