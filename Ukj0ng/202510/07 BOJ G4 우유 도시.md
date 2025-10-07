@@ -70,15 +70,5 @@ public class Main {
     private static boolean OOB(int nx, int ny) {
         return nx < 0 || nx > N-1 || ny < 0 || ny > N-1;
     }
-
-    private static boolean canDrink(int current, int next) {
-        if (current == 0 && next == 1) return true;
-
-        if (current == 1 && next == 2) return true;
-
-        if (current == 2 && next == 0) return true;
-
-        return false;
-    }
 }
 ```
