@@ -42,17 +42,23 @@
  <tr>
   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/zinnnn37"><img src="https://avatars.githubusercontent.com/zinnnn37" width="130px;" alt=""></a><br><a href="https://solved.ac/zinnnn0750"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=zinnnn0750" alt="Solved.ac 프로필"></a></td>
   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><img src="https://avatars.githubusercontent.com/JHLEE325" width="130px;" alt=""></a><br><a href="https://solved.ac/ljntiger325"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=ljntiger325" alt="Solved.ac 프로필"></a></td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/Seol-JY"><img src="https://avatars.githubusercontent.com/Seol-JY" width="130px;" alt=""></a><br><a href="https://solved.ac/wlsdud5654"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=wlsdud5654" alt="Solved.ac 프로필"></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><img src="https://avatars.githubusercontent.com/LiiNi-coder" width="130px;" alt=""></a><br><a href="https://solved.ac/dlsgudrpdla"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=dlsgudrpdla" alt="Solved.ac 프로필"></a></td>
+  <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/ksinji"><img src="https://avatars.githubusercontent.com/ksinji" width="130px;" alt=""></a><br><a href="https://solved.ac/akstp1717"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=akstp1717" alt="Solved.ac 프로필"></a></td>
   </tr>
   <tr>
    <td align="center"><a href="https://github.com/zinnnn37"><b>김민진</b></a></td>
    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/JHLEE325"><b>이준희</b></a></td>
+      <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/Seol-JY"><b>설진영</b></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/LiiNi-coder"><b>이인희</b></a></td>
+   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/ksinji"><b>강신지</b></a></td>
   </tr>
   <tr>
    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202510">10월 제출</td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202510">10월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202510">10월 제출</td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202510">10월 제출</td>
+      <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ksinji/ksinji/202510">10월 제출</td>
   </tr>
 </table>
 <br>
@@ -62,17 +68,12 @@
  <tr>
     <td align="center"><a href="https://github.com/03do-new30"><img src="https://avatars.githubusercontent.com/03do-new30" width="130px;" alt=""></a><br><a href="https://solved.ac/eastgloss0330"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=eastgloss0330" alt="Solved.ac 프로필"></a></td>
     <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/ShinHeeEul"><img src="https://avatars.githubusercontent.com/ShinHeeEul" width="130px;" alt=""></a><br><a href="https://solved.ac/tlsgmldmf"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=tlsgmldmf" alt="Solved.ac 프로필"></a></td>
-    <td align="center"><a href="https://github.com/Seol-JY"><img src="https://avatars.githubusercontent.com/Seol-JY" width="130px;" alt=""></a><br><a href="https://solved.ac/wlsdud5654"><img src="http://mazassumnida.wtf/api/mini/generate_badge?boj=wlsdud5654" alt="Solved.ac 프로필"></a></td>
   </tr>
   <tr>
     <td align="center" style="border-right : 0.5px solid gray"><b>신동윤</b></td>
     <td align="center" style="border-right : 0.5px solid gray"><b>신희을</b></td>
-    <td align="center" style="border-right : 0.5px solid gray"><b>설진영</b></td>
   </tr>
   <tr>
-    <td align="center" style="border-right : 0.5px solid gray; font-weight: bold">
-        <b>🎉졸업</b>
-    </td>
     <td align="center" style="border-right : 0.5px solid gray; font-weight: bold">
         <b>🎉졸업</b>
     </td>
