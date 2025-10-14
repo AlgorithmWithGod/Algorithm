@@ -73,13 +73,13 @@ jobs:
             folder_name="$github_id"
           fi
           
-          # 해당 멤버의 폴더에서 어제 날짜의 커밋이 있는지 확인
-          # author-date를 사용하여 한국 시간 기준으로 체크
+          # 해당 멤버의 폴더에서 어제 날짜에 변경사항이 있는 커밋 확인
+          # 커밋 작성자가 아닌, 폴더에 변경이 있었는지를 체크
           COMMITS=$(git log --all \
-            --author-date-order \
             --since="$YESTERDAY 00:00:00 +0900" \
             --until="$YESTERDAY 23:59:59 +0900" \
-            --pretty=format:"%H" \
+            --pretty=format:"%H|%an|%ad" \
+            --date=iso \
             -- "$folder_name/" 2>/dev/null || echo "")
           
           if [ -z "$COMMITS" ]; then
@@ -87,7 +87,11 @@ jobs:
             NO_COMMIT_MEMBERS+=("$korean_name")
           else
             COMMIT_COUNT=$(echo "$COMMITS" | wc -l)
-            echo "✅ $korean_name ($github_id) [폴더: $folder_name]: $COMMIT_COUNT 개 커밋"
+            # 첫 번째 커밋 정보 추출 (디버깅용)
+            FIRST_COMMIT=$(echo "$COMMITS" | head -1)
+            COMMIT_AUTHOR=$(echo "$FIRST_COMMIT" | cut -d'|' -f2)
+            COMMIT_DATE=$(echo "$FIRST_COMMIT" | cut -d'|' -f3)
+            echo "✅ $korean_name ($github_id) [폴더: $folder_name]: $COMMIT_COUNT 개 커밋 (작성자: $COMMIT_AUTHOR)"
           fi
         done
         
@@ -175,5 +179,6 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**대상자**: ${{ steps.check.outputs.no_commit_list }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "💰 **총 벌금**: $(($${{ steps.check.outputs.no_commit_count }} * 5000))원" >> $GITHUB_STEP_SUMMARY
+          PENALTY=$(($${{ steps.check.outputs.no_commit_count }} * 5000))
+          echo "💰 **총 벌금**: ${PENALTY}원" >> $GITHUB_STEP_SUMMARY
         fi
