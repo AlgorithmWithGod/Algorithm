@@ -27,13 +27,24 @@ jobs:
     - name: Check yesterday's commits
       id: check
       run: |
-        # 한국 시간 기준 어제 날짜 계산
-        YESTERDAY=$(TZ='Asia/Seoul' date -d 'yesterday' +%Y-%m-%d)
-        TODAY=$(TZ='Asia/Seoul' date +%Y-%m-%d)
+        # 현재 한국 시간 확인
+        CURRENT_KST=$(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M:%S %Z')
+        echo "현재 한국 시간: $CURRENT_KST"
         
-        echo "체크 대상 날짜: $YESTERDAY"
-        echo "yesterday=$YESTERDAY" >> $GITHUB_OUTPUT
-        echo "today=$TODAY" >> $GITHUB_OUTPUT
+        # 한국 시간 기준으로 오늘과 어제 날짜 계산
+        TODAY_KST=$(TZ='Asia/Seoul' date '+%Y-%m-%d')
+        YESTERDAY_KST=$(TZ='Asia/Seoul' date -d "$TODAY_KST -1 day" '+%Y-%m-%d')
+        
+        echo "오늘 (KST): $TODAY_KST"
+        echo "어제 (KST): $YESTERDAY_KST"
+        echo "체크 대상 날짜: $YESTERDAY_KST"
+        
+        echo "yesterday=$YESTERDAY_KST" >> $GITHUB_OUTPUT
+        echo "today=$TODAY_KST" >> $GITHUB_OUTPUT
+        
+        # 디버깅: UTC 시간도 출력
+        CURRENT_UTC=$(date -u '+%Y-%m-%d %H:%M:%S %Z')
+        echo "현재 UTC 시간: $CURRENT_UTC"
         
         # 활성 멤버 목록 (GitHub ID -> 한국어 이름)
         declare -A MEMBERS=(
@@ -76,8 +87,8 @@ jobs:
           # 해당 멤버의 폴더에서 어제 날짜에 변경사항이 있는 커밋 확인
           # 커밋 작성자가 아닌, 폴더에 변경이 있었는지를 체크
           COMMITS=$(git log --all \
-            --since="$YESTERDAY 00:00:00 +0900" \
-            --until="$YESTERDAY 23:59:59 +0900" \
+            --since="$YESTERDAY_KST 00:00:00 +0900" \
+            --until="$YESTERDAY_KST 23:59:59 +0900" \
             --pretty=format:"%H|%an|%ad" \
             --date=iso \
             -- "$folder_name/" 2>/dev/null || echo "")
@@ -98,7 +109,7 @@ jobs:
         # 결과 요약
         echo ""
         echo "=== 커밋 체크 결과 ==="
-        echo "체크 날짜: $YESTERDAY"
+        echo "체크 날짜: $YESTERDAY_KST"
         
         if [ ${#NO_COMMIT_MEMBERS[@]} -eq 0 ]; then
           echo "🎉 모든 멤버가 커밋했습니다!"
@@ -172,13 +183,17 @@ jobs:
         echo "**체크 날짜**: ${{ steps.check.outputs.yesterday }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         
-        if [ "${{ steps.check.outputs.no_commit_count }}" == "0" ]; then
+        NO_COMMIT_COUNT="${{ steps.check.outputs.no_commit_count }}"
+        
+        if [ "$NO_COMMIT_COUNT" == "0" ]; then
           echo "🎉 **모든 멤버가 커밋했습니다!**" >> $GITHUB_STEP_SUMMARY
         else
-          echo "❌ **커밋하지 않은 멤버**: ${{ steps.check.outputs.no_commit_count }}명" >> $GITHUB_STEP_SUMMARY
+          echo "❌ **커밋하지 않은 멤버**: ${NO_COMMIT_COUNT}명" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**대상자**: ${{ steps.check.outputs.no_commit_list }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          PENALTY=$(($${{ steps.check.outputs.no_commit_count }} * 5000))
+          
+          # 벌금 계산 (bash 산술 연산)
+          PENALTY=$((NO_COMMIT_COUNT * 5000))
           echo "💰 **총 벌금**: ${PENALTY}원" >> $GITHUB_STEP_SUMMARY
         fi
