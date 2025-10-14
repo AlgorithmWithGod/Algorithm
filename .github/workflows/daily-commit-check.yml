@@ -1,0 +1,146 @@
+name: 매일 커밋 체크
+
+on:
+  schedule:
+    # 매일 00:01 KST (UTC 15:01, 전날)
+    - cron: '1 15 * * *'
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  check-commits:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # 전체 히스토리 가져오기
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Check yesterday's commits
+      id: check
+      run: |
+        # 한국 시간 기준 어제 날짜 계산
+        YESTERDAY=$(TZ='Asia/Seoul' date -d 'yesterday' +%Y-%m-%d)
+        TODAY=$(TZ='Asia/Seoul' date +%Y-%m-%d)
+        
+        echo "체크 대상 날짜: $YESTERDAY"
+        echo "yesterday=$YESTERDAY" >> $GITHUB_OUTPUT
+        echo "today=$TODAY" >> $GITHUB_OUTPUT
+        
+        # 활성 멤버 목록 (GitHub ID -> 한국어 이름)
+        declare -A MEMBERS=(
+          ["oncsr"]="권혁준"
+          ["0224LJH"]="이종환"
+          ["Ukj0ng"]="한종욱"
+          ["suyeun84"]="김수연"
+          ["lkhyun"]="이강현"
+          ["zinnnn37"]="김민진"
+          ["JHLEE325"]="이준희"
+          ["Seol-JY"]="설진영"
+          ["LiiNi-coder"]="이인희"
+          ["ksinji"]="강신지"
+        )
+        
+        # 탈퇴한 멤버 (체크 제외)
+        GRADUATED=("03do-new30" "ShinHeeEul")
+        
+        # 커밋이 없는 멤버 저장
+        NO_COMMIT_MEMBERS=()
+        
+        # 각 멤버별로 체크
+        for github_id in "${!MEMBERS[@]}"; do
+          korean_name="${MEMBERS[$github_id]}"
+          
+          # 해당 멤버의 폴더에서 어제 날짜의 커밋이 있는지 확인
+          # author-date를 사용하여 한국 시간 기준으로 체크
+          COMMITS=$(git log --all \
+            --author-date-order \
+            --since="$YESTERDAY 00:00:00 +0900" \
+            --until="$YESTERDAY 23:59:59 +0900" \
+            --pretty=format:"%H" \
+            -- "$github_id/" 2>/dev/null || echo "")
+          
+          if [ -z "$COMMITS" ]; then
+            echo "❌ $korean_name ($github_id): 커밋 없음"
+            NO_COMMIT_MEMBERS+=("$korean_name")
+          else
+            COMMIT_COUNT=$(echo "$COMMITS" | wc -l)
+            echo "✅ $korean_name ($github_id): $COMMIT_COUNT 개 커밋"
+          fi
+        done
+        
+        # 결과 요약
+        echo ""
+        echo "=== 커밋 체크 결과 ==="
+        echo "체크 날짜: $YESTERDAY"
+        
+        if [ ${#NO_COMMIT_MEMBERS[@]} -eq 0 ]; then
+          echo "🎉 모든 멤버가 커밋했습니다!"
+          echo "no_commit_count=0" >> $GITHUB_OUTPUT
+          echo "no_commit_list=" >> $GITHUB_OUTPUT
+        else
+          echo "❌ 커밋하지 않은 멤버 (${#NO_COMMIT_MEMBERS[@]}명):"
+          for name in "${NO_COMMIT_MEMBERS[@]}"; do
+            echo "  - $name"
+          done
+          
+          # GitHub Output으로 내보내기
+          echo "no_commit_count=${#NO_COMMIT_MEMBERS[@]}" >> $GITHUB_OUTPUT
+          
+          # 배열을 쉼표로 구분된 문자열로 변환
+          NO_COMMIT_LIST=$(IFS=','; echo "${NO_COMMIT_MEMBERS[*]}")
+          echo "no_commit_list=$NO_COMMIT_LIST" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create Issue if there are missing commits
+      if: steps.check.outputs.no_commit_count != '0'
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const yesterday = '${{ steps.check.outputs.yesterday }}';
+          const noCommitList = '${{ steps.check.outputs.no_commit_list }}'.split(',');
+          const count = '${{ steps.check.outputs.no_commit_count }}';
+          
+          const body = `## 📊 ${yesterday} 커밋 체크 결과
+          
+          **커밋하지 않은 멤버: ${count}명**
+          
+          ${noCommitList.map(name => `- ${name} (벌금 5,000원)`).join('\n')}
+          
+          ---
+          
+          💰 총 벌금: ${parseInt(count) * 5000}원
+          
+          ⏰ 체크 시간: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
+          
+          // 이슈 생성
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `[${yesterday}] 커밋 미제출 알림`,
+            body: body,
+            labels: ['daily-check', 'penalty']
+          });
+    
+    - name: Print summary
+      run: |
+        echo "### 커밋 체크 완료 ✅" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**체크 날짜**: ${{ steps.check.outputs.yesterday }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.check.outputs.no_commit_count }}" == "0" ]; then
+          echo "🎉 **모든 멤버가 커밋했습니다!**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **커밋하지 않은 멤버**: ${{ steps.check.outputs.no_commit_count }}명" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**대상자**: ${{ steps.check.outputs.no_commit_list }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "💰 **총 벌금**: $(($${{ steps.check.outputs.no_commit_count }} * 5000))원" >> $GITHUB_STEP_SUMMARY
+        fi
