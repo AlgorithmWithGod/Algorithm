@@ -129,40 +129,38 @@ jobs:
           echo "no_commit_list=$NO_COMMIT_LIST" >> $GITHUB_OUTPUT
         fi
     
-    # 이슈 생성 기능은 권한 문제로 주석 처리
-    # Repository Settings > Actions > Workflow permissions를 
-    # "Read and write permissions"로 변경하면 사용 가능
-    
-    # - name: Create Issue if there are missing commits
-    #   if: steps.check.outputs.no_commit_count != '0'
-    #   uses: actions/github-script@v7
-    #   with:
-    #     github-token: ${{ secrets.TOKEN || secrets.GITHUB_TOKEN }}
-    #     script: |
-    #       const yesterday = '${{ steps.check.outputs.yesterday }}';
-    #       const noCommitList = '${{ steps.check.outputs.no_commit_list }}'.split(',');
-    #       const count = '${{ steps.check.outputs.no_commit_count }}';
-    #       
-    #       const body = `## 📊 ${yesterday} 커밋 체크 결과
-    #       
-    #       **커밋하지 않은 멤버: ${count}명**
-    #       
-    #       ${noCommitList.map(name => `- ${name} (벌금 5,000원)`).join('\n')}
-    #       
-    #       ---
-    #       
-    #       💰 총 벌금: ${parseInt(count) * 5000}원
-    #       
-    #       ⏰ 체크 시간: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
-    #       
-    #       // 이슈 생성
-    #       await github.rest.issues.create({
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         title: `[${yesterday}] 커밋 미제출 알림`,
-    #         body: body,
-    #         labels: ['daily-check', 'penalty']
-    #       });
+    - name: Create daily check issue
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const yesterday = '${{ steps.check.outputs.yesterday }}';
+          const noCommitList = '${{ steps.check.outputs.no_commit_list }}';
+          const count = '${{ steps.check.outputs.no_commit_count }}';
+          
+          let body = `## 📊 ${yesterday} 커밋 체크 결과\n\n`;
+          
+          if (count === '0') {
+            body += `🎉 **모든 멤버가 커밋했습니다!**\n\n`;
+            body += `총 10명 전원 제출 완료 ✅`;
+          } else {
+            const members = noCommitList.split(',');
+            body += `**커밋하지 않은 멤버: ${count}명**\n\n`;
+            body += members.map(name => `- ${name} (벌금 5,000원)`).join('\n');
+            body += `\n\n---\n\n`;
+            body += `💰 **총 벌금**: ${parseInt(count) * 5000}원`;
+          }
+          
+          body += `\n\n⏰ 체크 시간: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
+          
+          // 이슈 생성
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: count === '0' ? `[${yesterday}] ✅ 전원 제출 완료` : `[${yesterday}] ❌ 커밋 미제출 알림`,
+            body: body,
+            labels: count === '0' ? ['daily-check', 'all-clear'] : ['daily-check', 'penalty']
+          });
     
     - name: Post detailed results
       if: steps.check.outputs.no_commit_count != '0'
@@ -173,7 +171,10 @@ jobs:
         echo "날짜: ${{ steps.check.outputs.yesterday }}"
         echo "미제출 인원: ${{ steps.check.outputs.no_commit_count }}명"
         echo "대상자: ${{ steps.check.outputs.no_commit_list }}"
-        echo "총 벌금: $(($${{ steps.check.outputs.no_commit_count }} * 5000))원"
+        
+        NO_COMMIT_COUNT="${{ steps.check.outputs.no_commit_count }}"
+        PENALTY=$((NO_COMMIT_COUNT * 5000))
+        echo "총 벌금: ${PENALTY}원"
         echo "========================================="
     
     - name: Print summary
