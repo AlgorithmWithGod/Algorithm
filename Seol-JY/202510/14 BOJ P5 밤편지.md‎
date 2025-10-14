@@ -1,0 +1,81 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        int Q = Integer.parseInt(st.nextToken());
+        
+        int[][] dist = new int[N + 1][N + 1];
+        
+        for (int i = 1; i <= N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 1; j <= N; j++) {
+                dist[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+        
+        int[][][] dp = new int[N + 2][N + 1][N + 1];
+        
+        for (int k = 0; k <= N + 1; k++) {
+            for (int i = 1; i <= N; i++) {
+                Arrays.fill(dp[k][i], Integer.MAX_VALUE / 2);
+            }
+        }
+        
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                if (dist[i][j] > 0) {
+                    dp[0][i][j] = dist[i][j];
+                }
+                if (i == j) {
+                    dp[0][i][j] = 0;
+                }
+            }
+        }
+
+        for (int k = 1; k <= N; k++) {
+            for (int i = 1; i <= N; i++) {
+                for (int j = 1; j <= N; j++) {
+                    dp[k][i][j] = dp[k - 1][i][j];
+                    if (i != k && j != k) {
+                        dp[k][i][j] = Math.min(dp[k][i][j], 
+                                               dp[k - 1][i][k] + dp[k - 1][k][j]);
+                    }
+                }
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for (int q = 0; q < Q; q++) {
+            st = new StringTokenizer(br.readLine());
+            int C = Integer.parseInt(st.nextToken());
+            int s = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            
+            int result = Integer.MAX_VALUE / 2;
+            
+            if (C - 1 >= N) {
+                result = dp[N][s][e];
+            } else if (C - 1 >= 1) {
+                result = dp[C - 1][s][e];
+            } else {
+                result = dp[0][s][e];
+            }
+            
+            if (result >= Integer.MAX_VALUE / 2) {
+                sb.append("-1\n");
+            } else {
+                sb.append(result).append("\n");
+            }
+        }
+        
+        System.out.print(sb);
+    }
+}
+```
