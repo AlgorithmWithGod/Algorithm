@@ -1,0 +1,40 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int N = Integer.parseInt(br.readLine());
+        int[] H = new int[N];
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            H[i] = Integer.parseInt(st.nextToken());
+        }
+        
+        int[] S = new int[N];
+        S[0] = H[0];
+        for (int i = 1; i < N; i++) {
+            S[i] = S[i - 1] + H[i];
+        }
+        
+        int answer = 0;
+        
+        for (int mid = 1; mid < N - 1; mid++) {
+            answer = Math.max(answer, 2 * S[N - 1] - H[0] - H[mid] - S[mid]);
+        }
+        
+        for (int mid = 1; mid < N - 1; mid++) {
+            answer = Math.max(answer, S[N - 2] + S[mid] - 2 * H[mid]);
+        }
+        
+        for (int mid = 1; mid < N - 1; mid++) {
+            answer = Math.max(answer, S[N - 2] - H[0] + H[mid]);
+        }
+        
+        System.out.println(answer);
+    }
+}
+```
