@@ -1,0 +1,97 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static class Edge {
+        int to, cost;
+        
+        Edge(int to, int cost) {
+            this.to = to;
+            this.cost = cost;
+        }
+    }
+    
+    static int n, m;
+    static List<Edge>[] graph;
+    static int[] friends = new int[3];
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        
+        n = Integer.parseInt(br.readLine());
+        
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < 3; i++) {
+            friends[i] = Integer.parseInt(st.nextToken());
+        }
+        
+        graph = new ArrayList[n + 1];
+        for (int i = 1; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        
+        m = Integer.parseInt(br.readLine());
+        for (int i = 0; i < m; i++) {
+            st = new StringTokenizer(br.readLine());
+            int d = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            int l = Integer.parseInt(st.nextToken());
+            
+            graph[d].add(new Edge(e, l));
+            graph[e].add(new Edge(d, l));
+        }
+        
+        int[][] distances = new int[3][n + 1];
+        for (int i = 0; i < 3; i++) {
+            distances[i] = dijkstra(friends[i]);
+        }
+        
+        int maxMinDistance = -1;
+        int resultLand = -1;
+        
+        for (int land = 1; land <= n; land++) {
+            int minDistance = Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                minDistance = Math.min(minDistance, distances[i][land]);
+            }
+            
+            if (minDistance >= maxMinDistance) {
+                maxMinDistance = minDistance;
+                resultLand = land;
+            }
+        }
+        
+        System.out.println(resultLand);
+    }
+    
+    static int[] dijkstra(int start) {
+        int[] dist = new int[n + 1];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[start] = 0;
+        
+        PriorityQueue<Edge> pq = new PriorityQueue<>((a, b) -> a.cost - b.cost);
+        pq.offer(new Edge(start, 0));
+        
+        while (!pq.isEmpty()) {
+            Edge current = pq.poll();
+            int now = current.to;
+            int nowCost = current.cost;
+            
+            if (dist[now] < nowCost) continue;
+            
+            for (Edge next : graph[now]) {
+                int nextCost = nowCost + next.cost;
+                
+                if (nextCost < dist[next.to]) {
+                    dist[next.to] = nextCost;
+                    pq.offer(new Edge(next.to, nextCost));
+                }
+            }
+        }
+        
+        return dist;
+    }
+}
+```
