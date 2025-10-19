@@ -1,0 +1,116 @@
+```java 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+	
+	static int patternCnt;
+	static Pattern[] patterns;
+	
+	static String ans;
+	
+	static class Pattern {
+		int start;
+		int end;
+		int plus;
+		int numCnt;
+		
+		public Pattern(int start, int limit, int plus) {
+			
+			this.numCnt = (limit-start)/plus + 1;
+			
+			this.start = start;
+			this.end = (numCnt-1) * plus + start; // 진짜 마지막 숫자
+			this.plus = plus;
+		}
+	}
+	
+
+	
+
+    public static void main(String[] args) throws IOException {
+    	init();
+    	process();
+    	print();
+    }
+    
+    private static void init() throws IOException{
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    	patternCnt = Integer.parseInt(br.readLine());
+    	patterns = new Pattern[patternCnt];
+    	
+    	for (int i = 0; i < patternCnt; i++) {
+    		StringTokenizer st = new StringTokenizer(br.readLine());
+    		int start = Integer.parseInt(st.nextToken());
+    		int limit = Integer.parseInt(st.nextToken());
+    		int plus = Integer.parseInt(st.nextToken());
+    		patterns[i] = new Pattern(start,limit,plus);
+    	}
+    }
+    
+    private static void process() {
+    	long totalCnt = 0;
+    	for (Pattern p: patterns) totalCnt += p.numCnt;
+    	if (totalCnt %2 == 0) {
+    		ans = "NOTHING";
+    		return;
+    	}
+    	
+    	// 홀수개라면, 기준이 되는 지점을 찾으면 된다!!
+    	// 예를들어 num을 확인할 경우, num이하의 숫자의 개수를 찾는다.
+    	// num이하의 숫자가 나온 총 횟수를 f(num)이라 하자.
+    	// 1.f(num)이 짝수인 경우 -> 정답이 되는 숫자는 num보다 크다.
+    	// 2-1. f(num)이 홀수이고, num자체가 짝수개 or 존재 x -> 정답이 되는 숫자가 num보다 작다
+    	// 2-2. f(num)이 홀수이고, num자체가 홀수개 존재 -> 정답!!
+    	
+    	long start = 0;
+    	long end = Integer.MAX_VALUE;
+    	long mid = (start + end)/2;
+    	
+    	while (start <= mid) {
+    		long belowNumCnt = 0;
+    		long numCnt = 0;
+    		
+    		
+    		for (Pattern p: patterns) {
+    			if (p.end < mid) {
+    				belowNumCnt += p.numCnt;
+    				continue;
+    			} else if (p.start > mid) continue;
+    			
+    			//mid가 start 이상 end이하임
+    			belowNumCnt += (mid - p.start)/p.plus + 1;
+    			if ((mid-p.start)%p.plus == 0) numCnt++;
+    			
+    		}
+//    		System.out.println(mid +": " + numCnt +", 이하 총 개수:" + belowNumCnt);
+    		
+    		if (numCnt % 2 != 0) { // numCnt가 홀수 -> 정답임
+    			StringBuilder sb = new StringBuilder();
+    			sb.append(mid).append(" ").append(numCnt);
+    			ans = sb.toString();
+    			return;
+    		}
+    		
+    		
+    		if (belowNumCnt % 2 == 0) {
+    			start = mid+1;
+    		} else {
+    			end = mid;
+    		}
+    		mid = (start + end)/2;
+    	}
+    	
+    	
+    	
+    }
+    
+    private static void print() {
+    	System.out.println(ans);
+    }
+
+}
+```
