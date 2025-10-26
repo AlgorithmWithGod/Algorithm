@@ -1,0 +1,82 @@
+```java
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int N = Integer.parseInt(br.readLine());
+        
+        int[] P = new int[N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            P[i] = Integer.parseInt(st.nextToken());
+        }
+        
+        int[] S = new int[N];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            S[i] = Integer.parseInt(st.nextToken());
+        }
+        
+        int[] current = new int[N];
+        for (int i = 0; i < N; i++) {
+            current[i] = i;
+        }
+        
+        boolean isGoal = true;
+        for (int i = 0; i < N; i++) {
+            if (current[i] % 3 != P[i]) {
+                isGoal = false;
+                break;
+            }
+        }
+        
+        if (isGoal) {
+            System.out.println(0);
+            return;
+        }
+        
+        int maxAttempts = 500000;
+        
+        for (int shuffle = 1; shuffle <= maxAttempts; shuffle++) {
+            int[] next = new int[N];
+            for (int i = 0; i < N; i++) {
+                next[i] = current[S[i]];
+            }
+            current = next;
+            
+            boolean success = true;
+            for (int i = 0; i < N; i++) {
+                if (current[i] % 3 != P[i]) {
+                    success = false;
+                    break;
+                }
+            }
+            
+            if (success) {
+                System.out.println(shuffle);
+                return;
+            }
+            
+            if (shuffle > 1) {
+                boolean backToStart = true;
+                for (int i = 0; i < N; i++) {
+                    if (current[i] != i) {
+                        backToStart = false;
+                        break;
+                    }
+                }
+                if (backToStart) {
+                    System.out.println(-1);
+                    return;
+                }
+            }
+        }
+        
+        System.out.println(-1);
+    }
+}
+```
