@@ -38,6 +38,7 @@ class Solution {
             if (num.get(i).contains(number)) {
                 return i;
             }
+
         }
  
         return -1;
