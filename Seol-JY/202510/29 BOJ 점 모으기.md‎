@@ -1,0 +1,37 @@
+```
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        
+        int[] rows = new int[M];
+        int[] cols = new int[M];
+        
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            rows[i] = Integer.parseInt(st.nextToken());
+            cols[i] = Integer.parseInt(st.nextToken());
+        }
+        
+        Arrays.sort(rows);
+        Arrays.sort(cols);
+        
+        int medianRow = rows[M / 2];
+        int medianCol = cols[M / 2];
+        
+        long sum = 0;
+        for (int i = 0; i < M; i++) {
+            sum += Math.abs(rows[i] - medianRow);
+            sum += Math.abs(cols[i] - medianCol);
+        }
+        
+        System.out.println(sum);
+    }
+}
+```
