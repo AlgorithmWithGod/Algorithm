@@ -28,11 +28,11 @@
    <td align="center"><a href="https://github.com/lkhyun"><b>이강현</b></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202510">10월 제출</td>
-     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202510">10월 제출</td>
-      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202510">10월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202510">10월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202510">10월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202511">11월 제출</td>
+     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202511">11월 제출</td>
+      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202511">11월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/suyeun84/suyeun84/202511">11월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202511">11월 제출</td>
     </tr>
 </table>
 
