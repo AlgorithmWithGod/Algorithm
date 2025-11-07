@@ -50,8 +50,6 @@ class PGM_LV2_소수_찾기 {
 
             int curNum = num.charAt(i) - '0';
 
-            if (curNum == 0 && depth == 0) continue;
-
             visited[i] = true;
             dfs(depth + 1, start + 1, candidate * 10 + curNum);
             visited[i] = false;
