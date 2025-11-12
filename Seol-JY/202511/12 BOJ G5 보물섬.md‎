@@ -1,0 +1,83 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static int N, M;
+    static char[][] map;
+    static int[] dx = {-1, 1, 0, 0};
+    static int[] dy = {0, 0, -1, 1};
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        
+        map = new char[N][M];
+        List<Point> lands = new ArrayList<>();
+        
+        for (int i = 0; i < N; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < M; j++) {
+                map[i][j] = line.charAt(j);
+                if (map[i][j] == 'L') {
+                    lands.add(new Point(i, j));
+                }
+            }
+        }
+        
+        int maxDistance = 0;
+        
+        for (Point land : lands) {
+            int distance = bfs(land.x, land.y);
+            maxDistance = Math.max(maxDistance, distance);
+        }
+        
+        System.out.println(maxDistance);
+    }
+    
+    static int bfs(int startX, int startY) {
+        ArrayDeque<Point> queue = new ArrayDeque<>();
+        int[][] distance = new int[N][M];
+        
+        for (int i = 0; i < N; i++) {
+            Arrays.fill(distance[i], -1);
+        }
+        
+        queue.offer(new Point(startX, startY));
+        distance[startX][startY] = 0;
+        
+        int maxDist = 0;
+        
+        while (!queue.isEmpty()) {
+            Point current = queue.poll();
+            
+            for (int i = 0; i < 4; i++) {
+                int nx = current.x + dx[i];
+                int ny = current.y + dy[i];
+                
+                if (nx >= 0 && nx < N && ny >= 0 && ny < M) {
+                    if (map[nx][ny] == 'L' && distance[nx][ny] == -1) {
+                        distance[nx][ny] = distance[current.x][current.y] + 1;
+                        maxDist = Math.max(maxDist, distance[nx][ny]);
+                        queue.offer(new Point(nx, ny));
+                    }
+                }
+            }
+        }
+        
+        return maxDist;
+    }
+    
+    static class Point {
+        int x, y;
+        
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+}
+```
