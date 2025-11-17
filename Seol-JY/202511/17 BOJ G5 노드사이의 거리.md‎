@@ -1,0 +1,84 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static List<List<Edge>> graph;
+    static int n, m;
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        
+        graph = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            graph.add(new ArrayList<>());
+        }
+        
+        for (int i = 0; i < n - 1; i++) {
+            st = new StringTokenizer(br.readLine());
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
+            
+            graph.get(u).add(new Edge(v, w));
+            graph.get(v).add(new Edge(u, w));
+        }
+        
+        for (int i = 0; i < m; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            
+            int distance = bfs(start, end);
+            bw.write(distance + "\n");
+        }
+        
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+    
+    static int bfs(int start, int end) {
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        int[] dist = new int[n + 1];
+        boolean[] visited = new boolean[n + 1];
+        
+        Arrays.fill(dist, -1);
+        queue.offer(start);
+        dist[start] = 0;
+        visited[start] = true;
+        
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            
+            if (curr == end) {
+                return dist[end];
+            }
+            
+            for (Edge edge : graph.get(curr)) {
+                if (!visited[edge.to]) {
+                    visited[edge.to] = true;
+                    dist[edge.to] = dist[curr] + edge.weight;
+                    queue.offer(edge.to);
+                }
+            }
+        }
+        
+        return dist[end];
+    }
+    
+    static class Edge {
+        int to, weight;
+        
+        Edge(int to, int weight) {
+            this.to = to;
+            this.weight = weight;
+        }
+    }
+}
+```
