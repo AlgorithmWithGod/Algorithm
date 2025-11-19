@@ -1,0 +1,88 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static int N;
+    static int[][] board;
+    static Map<Integer, Set<Integer>> likes = new HashMap<>();
+    static int[] dr = {-1, 1, 0, 0};
+    static int[] dc = {0, 0, -1, 1};
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        board = new int[N][N];
+        
+        int[] order = new int[N * N];
+        for (int i = 0; i < N * N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int student = Integer.parseInt(st.nextToken());
+            order[i] = student;
+            Set<Integer> likeSet = new HashSet<>();
+            for (int j = 0; j < 4; j++) {
+                likeSet.add(Integer.parseInt(st.nextToken()));
+            }
+            likes.put(student, likeSet);
+        }
+        
+        for (int student : order) {
+            placeSeat(student);
+        }
+        
+        System.out.println(calculateSatisfaction());
+    }
+    
+    static void placeSeat(int student) {
+        int maxLikes = -1, maxEmpty = -1;
+        int bestR = -1, bestC = -1;
+        
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                if (board[r][c] != 0) continue;
+                
+                int likeCnt = 0, emptyCnt = 0;
+                for (int d = 0; d < 4; d++) {
+                    int nr = r + dr[d];
+                    int nc = c + dc[d];
+                    if (nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
+                    if (board[nr][nc] == 0) emptyCnt++;
+                    else if (likes.get(student).contains(board[nr][nc])) likeCnt++;
+                }
+                
+                if (likeCnt > maxLikes || 
+                    (likeCnt == maxLikes && emptyCnt > maxEmpty) ||
+                    (likeCnt == maxLikes && emptyCnt == maxEmpty && (bestR == -1 || r < bestR || (r == bestR && c < bestC)))) {
+                    maxLikes = likeCnt;
+                    maxEmpty = emptyCnt;
+                    bestR = r;
+                    bestC = c;
+                }
+            }
+        }
+        
+        board[bestR][bestC] = student;
+    }
+    
+    static int calculateSatisfaction() {
+        int total = 0;
+        int[] satisfaction = {0, 1, 10, 100, 1000};
+        
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                int student = board[r][c];
+                int cnt = 0;
+                for (int d = 0; d < 4; d++) {
+                    int nr = r + dr[d];
+                    int nc = c + dc[d];
+                    if (nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
+                    if (likes.get(student).contains(board[nr][nc])) cnt++;
+                }
+                total += satisfaction[cnt];
+            }
+        }
+        
+        return total;
+    }
+}
+```
