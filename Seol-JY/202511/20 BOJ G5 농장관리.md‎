@@ -1,0 +1,77 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static int N, M;
+    static int[][] grid;
+    static boolean[][] visited;
+    static int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+    static int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        
+        grid = new int[N][M];
+        visited = new boolean[N][M];
+        
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                grid[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+        
+        int count = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (!visited[i][j] && isPeak(i, j)) {
+                    count++;
+                }
+            }
+        }
+        
+        System.out.println(count);
+    }
+    
+    static boolean isPeak(int x, int y) {
+        ArrayDeque<int[]> queue = new ArrayDeque<>();
+        List<int[]> component = new ArrayList<>();
+        
+        queue.offer(new int[]{x, y});
+        visited[x][y] = true;
+        component.add(new int[]{x, y});
+        
+        int height = grid[x][y];
+        boolean isPeak = true;
+        
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            
+            for (int i = 0; i < 8; i++) {
+                int nx = cur[0] + dx[i];
+                int ny = cur[1] + dy[i];
+                
+                if (nx < 0 || nx >= N || ny < 0 || ny >= M) continue;
+                
+                if (grid[nx][ny] > height) {
+                    isPeak = false;
+                }
+                
+                if (!visited[nx][ny] && grid[nx][ny] == height) {
+                    visited[nx][ny] = true;
+                    queue.offer(new int[]{nx, ny});
+                    component.add(new int[]{nx, ny});
+                }
+            }
+        }
+        
+        return isPeak;
+    }
+}
+
+```
