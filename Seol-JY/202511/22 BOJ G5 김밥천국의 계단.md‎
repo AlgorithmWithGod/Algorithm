@@ -1,0 +1,45 @@
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        
+        int[] dist = new int[N + 1];
+        Arrays.fill(dist, -1);
+        
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        queue.offer(0);
+        dist[0] = 0;
+        
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            
+            if (dist[cur] >= K) continue;
+            
+            int next1 = cur + 1;
+            if (next1 <= N && dist[next1] == -1) {
+                dist[next1] = dist[cur] + 1;
+                queue.offer(next1);
+            }
+            
+            int next2 = cur + cur / 2;
+            if (next2 <= N && dist[next2] == -1) {
+                dist[next2] = dist[cur] + 1;
+                queue.offer(next2);
+            }
+        }
+        
+        if (dist[N] != -1 && dist[N] <= K) {
+            System.out.println("minigimbob");
+        } else {
+            System.out.println("water");
+        }
+    }
+}
+```
