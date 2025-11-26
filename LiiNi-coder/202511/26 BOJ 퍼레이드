@@ -1,0 +1,72 @@
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main{
+	private static int V;
+	private static int E;
+	private static List<List<Integer>> graph;
+	private static boolean[] visited;
+	private static int maxPassedVertex;
+	public static void main(String[] args) throws IOException {
+		String[] temp;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		temp = br.readLine().split(" ");
+		V = Integer.parseInt(temp[0]);
+		E = Integer.parseInt(temp[1]);
+
+		graph = new ArrayList<>();
+
+		int[] ds = new int[V+1];//degreesAtVertex
+		for(int i = 0; i < V+1; i++){
+			graph.add(new ArrayList<>() );
+		}
+		for (int i = 0; i < E; i++) {
+			temp = br.readLine().split(" ");
+			int s = Integer.parseInt(temp[0]);
+			int e = Integer.parseInt(temp[1]);
+			ds[s]++;
+			ds[e]++;
+			graph.get(s).add(e);
+			graph.get(e).add(s);
+		}
+
+		visited = new boolean[V+1];
+		visited[1] = true;
+		dfs(1, 1);
+		maxPassedVertex = 0;
+		for(int i = 1; i < V+1; i++){
+			if(visited[i]) maxPassedVertex++;
+		}
+		if(maxPassedVertex != V){
+			//System.out.println(maxPassedVertex + " " + V);
+			System.out.println("NO");
+			System.exit(0);
+		}
+
+		int odd = 0;
+		for(int i = 1; i<V+1; i++){
+			if(ds[i] %2 == 1){
+				odd++;
+			}
+		}
+
+		System.out.println((odd==0 || odd == 2) ?"YES":"NO");
+		br.close();
+
+	}
+
+	private static void dfs(int sv, int passedVertex) {
+		for(int nv : graph.get(sv)){
+			if(visited[nv] == true )
+				continue;
+			visited[nv] = true;
+			dfs(nv, passedVertex+1);
+			//visited[nv] = false;
+		}
+
+	}
+}
+```
