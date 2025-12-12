@@ -13,7 +13,6 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        // LIS using binary search
         ArrayList<Integer> lis = new ArrayList<>();
 
         for (int a : arr) {
