@@ -26,10 +26,10 @@
    <td align="center"><a href="https://github.com/lkhyun"><b>이강현</b></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202512">12월 제출</td>
-     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202512">12월 제출</td>
-      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202512">12월 제출</td>
-    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202512">12월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/khj20006/khj20006/202601">1월 제출</td>
+     <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/0224LJH/0224LJH/202601">1월 제출</td>
+      <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Ukj0ng/Ukj0ng/202601">1월 제출</td>
+    <td align="center"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/lkhyun/lkhyun/202601">1월 제출</td>
     </tr>
 </table>
 
@@ -51,11 +51,11 @@
    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/ksinji"><b>강신지</b></a></td>
   </tr>
   <tr>
-   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202512">12월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202512">12월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202512">12월 제출</td>
-    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202512">12월 제출</td>
-      <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ksinji/ksinji/202512">12월 제출</td>
+   <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/zinnnn37/zinnnn37/202601">1월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/JHLEE325/JHLEE325/202601">1월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/Seol-JY/Seol-JY/202601">1월 제출</td>
+    <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/LiiNi-coder/LiiNi-coder/202601">1월 제출</td>
+      <td align="center" style="border-right : 0.5px solid gray"><a href="https://github.com/AlgorithmWithGod/Algorithm/new/ksinji/ksinji/202601">1월 제출</td>
   </tr>
 </table>
 <br>
