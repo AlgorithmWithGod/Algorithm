@@ -46,29 +46,22 @@ jobs:
         CURRENT_UTC=$(date -u '+%Y-%m-%d %H:%M:%S %Z')
         echo "현재 UTC 시간: $CURRENT_UTC"
         
-        # 활성 멤버 목록 (GitHub ID -> 한국어 이름)
+        # 활성 멤버 목록 (GitHub ID -> 한국어 이름) - 4명 졸업 후 5명 잔류
         declare -A MEMBERS=(
-          ["oncsr"]="권혁준"
-          ["0224LJH"]="이종환"
           ["Ukj0ng"]="한종욱"
-          ["suyeun84"]="김수연"
-          ["lkhyun"]="이강현"
           ["zinnnn37"]="김민진"
           ["JHLEE325"]="이준희"
-          ["Seol-JY"]="설진영"
           ["LiiNi-coder"]="이인희"
           ["ksinji"]="강신지"
         )
         
         # 멤버별 폴더명 매핑 (GitHub ID -> 폴더명)
-        # 기본값은 GitHub ID와 동일, 다른 경우만 명시
         declare -A FOLDERS=(
-          ["oncsr"]="khj20006"
-          # 나머지는 GitHub ID와 동일하므로 생략
+          # 현재 멤버 중 특이사항 있는 경우 여기에 추가
         )
         
-        # 탈퇴한 멤버 (체크 제외)
-        GRADUATED=("03do-new30" "ShinHeeEul")
+        # 졸업/탈퇴 멤버 (체크 제외) - 기존 졸업자 + 신규 졸업자 4명 추가
+        GRADUATED=("03do-new30" "ShinHeeEul" "oncsr" "0224LJH" "lkhyun" "Seol-JY" "suyeun84")
         
         # 커밋이 없는 멤버 저장
         NO_COMMIT_MEMBERS=()
@@ -77,15 +70,12 @@ jobs:
         for github_id in "${!MEMBERS[@]}"; do
           korean_name="${MEMBERS[$github_id]}"
           
-          # 폴더명 결정: FOLDERS에 정의되어 있으면 사용, 없으면 github_id 사용
           if [ -n "${FOLDERS[$github_id]}" ]; then
             folder_name="${FOLDERS[$github_id]}"
           else
             folder_name="$github_id"
           fi
           
-          # 해당 멤버의 폴더에서 어제 날짜에 변경사항이 있는 커밋 확인
-          # 커밋 작성자가 아닌, 폴더에 변경이 있었는지를 체크
           COMMITS=$(git log --all \
             --since="$YESTERDAY_KST 00:00:00 +0900" \
             --until="$YESTERDAY_KST 23:59:59 +0900" \
@@ -98,10 +88,8 @@ jobs:
             NO_COMMIT_MEMBERS+=("$korean_name")
           else
             COMMIT_COUNT=$(echo "$COMMITS" | wc -l)
-            # 첫 번째 커밋 정보 추출 (디버깅용)
             FIRST_COMMIT=$(echo "$COMMITS" | head -1)
             COMMIT_AUTHOR=$(echo "$FIRST_COMMIT" | cut -d'|' -f2)
-            COMMIT_DATE=$(echo "$FIRST_COMMIT" | cut -d'|' -f3)
             echo "✅ $korean_name ($github_id) [폴더: $folder_name]: $COMMIT_COUNT 개 커밋 (작성자: $COMMIT_AUTHOR)"
           fi
         done
@@ -121,10 +109,7 @@ jobs:
             echo "  - $name"
           done
           
-          # GitHub Output으로 내보내기
           echo "no_commit_count=${#NO_COMMIT_MEMBERS[@]}" >> $GITHUB_OUTPUT
-          
-          # 배열을 쉼표로 구분된 문자열로 변환
           NO_COMMIT_LIST=$(IFS=','; echo "${NO_COMMIT_MEMBERS[*]}")
           echo "no_commit_list=$NO_COMMIT_LIST" >> $GITHUB_OUTPUT
         fi
@@ -142,7 +127,7 @@ jobs:
           
           if (count === '0') {
             body += `🎉 **모든 멤버가 커밋했습니다!**\n\n`;
-            body += `총 10명 전원 제출 완료 ✅`;
+            body += `총 5명 전원 제출 완료 ✅`; // 인원수 10명 -> 5명으로 수정
           } else {
             const members = noCommitList.split(',');
             body += `**커밋하지 않은 멤버: ${count}명**\n\n`;
@@ -153,7 +138,6 @@ jobs:
           
           body += `\n\n⏰ 체크 시간: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
           
-          // 이슈 생성
           await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
@@ -161,21 +145,6 @@ jobs:
             body: body,
             labels: count === '0' ? ['daily-check', 'all-clear'] : ['daily-check', 'penalty']
           });
-    
-    - name: Post detailed results
-      if: steps.check.outputs.no_commit_count != '0'
-      run: |
-        echo "========================================="
-        echo "❌ 커밋 미제출 알림"
-        echo "========================================="
-        echo "날짜: ${{ steps.check.outputs.yesterday }}"
-        echo "미제출 인원: ${{ steps.check.outputs.no_commit_count }}명"
-        echo "대상자: ${{ steps.check.outputs.no_commit_list }}"
-        
-        NO_COMMIT_COUNT="${{ steps.check.outputs.no_commit_count }}"
-        PENALTY=$((NO_COMMIT_COUNT * 5000))
-        echo "총 벌금: ${PENALTY}원"
-        echo "========================================="
     
     - name: Print summary
       run: |
@@ -194,7 +163,6 @@ jobs:
           echo "**대상자**: ${{ steps.check.outputs.no_commit_list }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          # 벌금 계산 (bash 산술 연산)
           PENALTY=$((NO_COMMIT_COUNT * 5000))
           echo "💰 **총 벌금**: ${PENALTY}원" >> $GITHUB_STEP_SUMMARY
         fi
