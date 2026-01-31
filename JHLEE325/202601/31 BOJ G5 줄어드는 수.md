@@ -1,36 +1,44 @@
 ```java
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
-
-    static int[] nums = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-    static List<Long> list = new ArrayList<>();
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        
         int N = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i <= 9; i++) {
-            dfs(i, i);
+        if (N == 1) {
+            System.out.println(0);
+            return;
         }
 
-        Collections.sort(list);
-
-        if (N > list.size()) {
-            System.out.println("-1");
-        } else {
-            System.out.println(list.get(N - 1));
+        Queue<Long> queue = new LinkedList<>();
+        for (int i = 1; i <= 9; i++) {
+            queue.add((long) i);
         }
+
+        int count = 1;
+
+        while (!queue.isEmpty()) {
+            long current = queue.poll();
+            count++;
+
+            if (count == N) {
+                System.out.println(current);
+                return;
+            }
+
+            long lastDigit = current % 10;
+            
+            for (int i = 0; i < lastDigit; i++) {
+                long nextNum = (current * 10) + i;
+                queue.add(nextNum);
+            }
+        }
+
+        System.out.println("-1");
     }
-
-    static void dfs(long num, int lastDigit) {
-        list.add(num);
-
-        for (int i = 0; i < lastDigit; i++) {
-            dfs(num * 10 + i, i);
-        }
-    }
-    
 }
 ```
